@@ -19,6 +19,98 @@ __meta__ = {
 
 [node name="ChatBox" parent="." instance=ExtResource( 1 )]
 margin_left = 50.7968
-margin_top = -200.797
-margin_right = 350.797
+margin_top = -250.0
+margin_right = 450.0
 margin_bottom = -50.7969
+
+[node name="Placeholder" type="ColorRect" parent="."]
+margin_left = 1013.35
+margin_top = 579.181
+margin_right = 1231.35
+margin_bottom = 667.181
+color = Color( 0.0784314, 0.0823529, 0.207843, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="P Text" type="Label" parent="Placeholder"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Player Health and Mana
+
+could also be in top left
+with separate status log here"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Placeholder4" type="ColorRect" parent="."]
+margin_left = 526.0
+margin_top = 581.0
+margin_right = 928.0
+margin_bottom = 669.0
+color = Color( 0.0784314, 0.0823529, 0.207843, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="P Text" type="Label" parent="Placeholder4"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Spells"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Placeholder2" type="ColorRect" parent="."]
+margin_left = 1071.0
+margin_top = 39.0
+margin_right = 1242.0
+margin_bottom = 195.0
+color = Color( 0.0784314, 0.0823529, 0.207843, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="P text" type="Label" parent="Placeholder2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "WHERE AM I?
+\"minimap\"?"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Placeholder3" type="ColorRect" parent="."]
+margin_left = 57.0
+margin_top = 31.0
+margin_right = 224.0
+margin_bottom = 418.0
+color = Color( 0.0784314, 0.0823529, 0.207843, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="P text" type="Label" parent="Placeholder3"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Party interface
+
+(with dialog popups
+so you can see
+who's talking?)"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

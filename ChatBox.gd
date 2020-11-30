@@ -51,7 +51,6 @@ func add_message(username, text, group = 0):
 # then grab focus again with Enter without sending the leftover text
 func on_text_entered(new_text):
 	if new_text != '':
-		print(new_text)
 		add_message(user_name, new_text, group_index)
 		inputField.text = ''
 
