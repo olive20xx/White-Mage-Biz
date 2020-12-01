@@ -1,8 +1,8 @@
 extends Control
 
-onready var chatLog = get_node("VBoxContainer/RichTextLabel")
-onready var inputLabel = get_node("VBoxContainer/ColorRect/HBoxContainer/Label")
-onready var inputField = get_node("VBoxContainer/ColorRect/HBoxContainer/LineEdit")
+onready var chatLog = get_node("MarginContainer/VBoxContainer/RichTextLabel")
+onready var inputLabel = get_node("MarginContainer/VBoxContainer/ColorRect/HBoxContainer/Label")
+onready var inputField = get_node("MarginContainer/VBoxContainer/ColorRect/HBoxContainer/LineEdit")
 
 var has_focus = false
 

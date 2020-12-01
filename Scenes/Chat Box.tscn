@@ -9,8 +9,8 @@
 [node name="ChatBox" type="Control"]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_top = -150.0
-margin_right = 300.0
+margin_top = -160.0
+margin_right = 310.0
 rect_min_size = Vector2( 250, 100 )
 script = ExtResource( 1 )
 __meta__ = {
@@ -20,23 +20,32 @@ __meta__ = {
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -5.0
-margin_top = -5.0
-margin_right = 5.0
-margin_bottom = 5.0
 color = Color( 0.301961, 0.286275, 0.286275, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 305.0
+margin_bottom = 155.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
 margin_right = 300.0
 margin_bottom = 122.0
 focus_mode = 2
@@ -46,7 +55,7 @@ bbcode_enabled = true
 scroll_following = true
 selection_enabled = true
 
-[node name="ColorRect" type="ColorRect" parent="VBoxContainer"]
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer"]
 margin_top = 126.0
 margin_right = 300.0
 margin_bottom = 150.0
@@ -54,7 +63,7 @@ rect_min_size = Vector2( 0, 24 )
 size_flags_horizontal = 3
 color = Color( 0.172549, 0.164706, 0.196078, 1 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ColorRect"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ColorRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 3.0
@@ -62,13 +71,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="VBoxContainer/ColorRect/HBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ColorRect/HBoxContainer"]
 margin_top = 5.0
 margin_right = 61.0
 margin_bottom = 19.0
 text = "[Whisper]"
 
-[node name="LineEdit" type="LineEdit" parent="VBoxContainer/ColorRect/HBoxContainer"]
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/ColorRect/HBoxContainer"]
 margin_left = 65.0
 margin_right = 297.0
 margin_bottom = 24.0
@@ -77,4 +86,3 @@ custom_styles/focus = SubResource( 1 )
 custom_styles/normal = SubResource( 2 )
 max_length = 240
 caret_blink = true
-caret_blink_speed = 0.5
