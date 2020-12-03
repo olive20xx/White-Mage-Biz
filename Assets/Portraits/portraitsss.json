@@ -1,0 +1,20 @@
+{"frames": [
+
+{
+	"filename": "CGabrielFaces48x48.png",
+	"frame": {"x":0,"y":0,"w":384,"h":384},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":384,"h":384},
+	"sourceSize": {"w":384,"h":384}
+}],
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "portraitsss.png",
+	"format": "RGBA8888",
+	"size": {"w":384,"h":384},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:3c3d6eb0d51cc65859b5b7ed23efdd35:04fe81018eba34f47bec2c749223f2c0:c2f8d16368e909342498e5c0342d0074$"
+}
+}

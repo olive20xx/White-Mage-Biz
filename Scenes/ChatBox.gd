@@ -14,24 +14,24 @@ var groups = [
 ]
 
 var group_index = 0
-var user_name = "Kroan"
+var user_name = 'Kroan'
 
 func _ready():
-	inputField.connect("text_entered", self, "on_text_entered")
-	inputField.connect("focus_entered", self, "on_focus_entered")
-	inputField.connect("focus_exited", self, "on_focus_released")
-	cmdManager.connect("command_msg_logged", self, "on_command_msg_logged")
-	cmdManager.connect("error_msg_logged", self, "on_error_msg_logged")
+	inputField.connect('text_entered', self, 'on_text_entered')
+	inputField.connect('focus_entered', self, 'on_focus_entered')
+	inputField.connect('focus_exited', self, 'on_focus_released')
+	cmdManager.connect('command_msg_logged', self, 'on_command_msg_logged')
+	cmdManager.connect('error_msg_logged', self, 'on_error_msg_logged')
 	
 	change_group(0)
 
 func _input(event):
 	if event is InputEventKey:
-		if event.is_action_pressed("ui_accept"):
+		if event.is_action_pressed('ui_accept'):
 			inputField.grab_focus()
-		if event.is_action_pressed("ui_cancel"):
+		if event.is_action_pressed('ui_cancel'):
 			inputField.release_focus()
-		if event.is_action_pressed("chat_channel_next") and has_focus:
+		if event.is_action_pressed('chat_channel_next') and has_focus:
 			change_group(1)
 
 func change_group(value):
@@ -57,12 +57,12 @@ func add_chat_message(username, text, group = 0):
 
 func add_system_log(text):
 	var final_text = text
-	add_message(final_text, "white")
+	add_message(final_text, 'white')
 
 func add_error_log(text):
-	var final_text = "[ERROR]: "
+	var final_text = '[ERROR]: '
 	final_text += text
-	add_message(final_text, "red")
+	add_message(final_text, 'red')
 
 # Not sure how to make it so you can leave text in the inputfield, release focus
 # then grab focus again with Enter without sending the leftover text

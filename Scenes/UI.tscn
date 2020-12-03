@@ -4,8 +4,10 @@
 [ext_resource path="res://Scenes/Party Interface.tscn" type="PackedScene" id=2]
 
 [node name="UI" type="Control"]
-anchor_right = 1.0
+anchor_top = 1.0
 anchor_bottom = 1.0
+margin_top = -720.0
+margin_right = 1280.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -19,10 +21,10 @@ __meta__ = {
 }
 
 [node name="ChatBox" parent="." instance=ExtResource( 1 )]
-margin_left = 48.0
+margin_left = 64.0
 margin_top = -248.0
-margin_right = 447.203
-margin_bottom = -48.7969
+margin_right = 414.0
+margin_bottom = -48.0
 
 [node name="Placeholder" type="ColorRect" parent="."]
 margin_left = 1013.35
@@ -96,21 +98,5 @@ margin_left = 48.0
 margin_top = 32.0
 margin_right = 283.0
 margin_bottom = 379.0
-
-[node name="VBoxContainer" parent="Party Interface/MarginContainer" index="0"]
-margin_bottom = 296.0
-
-[node name="PartyMemberContainer2" parent="Party Interface/MarginContainer/VBoxContainer" index="1"]
-visible = true
-
-[node name="PartyMemberContainer3" parent="Party Interface/MarginContainer/VBoxContainer" index="2"]
-visible = true
-margin_top = 148.0
-margin_bottom = 212.0
-
-[node name="PartyMemberContainer4" parent="Party Interface/MarginContainer/VBoxContainer" index="3"]
-visible = true
-margin_top = 222.0
-margin_bottom = 286.0
 
 [editable path="Party Interface"]
