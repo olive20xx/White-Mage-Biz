@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://ChatBox.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/CommandManager.gd" type="Script" id=2]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -86,3 +87,6 @@ custom_styles/focus = SubResource( 1 )
 custom_styles/normal = SubResource( 2 )
 max_length = 240
 caret_blink = true
+
+[node name="CommandManager" type="Node" parent="."]
+script = ExtResource( 2 )
