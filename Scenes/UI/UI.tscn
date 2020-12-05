@@ -1,13 +1,11 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Scenes/Chat Box.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/Party Interface.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/UI/ChatBox.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/UI/PartyInterface.tscn" type="PackedScene" id=2]
 
 [node name="UI" type="Control"]
-anchor_top = 1.0
-anchor_bottom = 1.0
-margin_top = -720.0
 margin_right = 1280.0
+margin_bottom = 720.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -26,7 +24,17 @@ margin_top = -248.0
 margin_right = 414.0
 margin_bottom = -48.0
 
-[node name="Placeholder" type="ColorRect" parent="."]
+[node name="PartyInterface" parent="." instance=ExtResource( 2 )]
+margin_left = 48.0
+margin_top = 32.0
+margin_right = 283.0
+margin_bottom = 379.0
+
+[node name="Placeholders" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="player status PLACEHOLDER" type="ColorRect" parent="Placeholders"]
 margin_left = 1013.35
 margin_top = 579.181
 margin_right = 1231.35
@@ -36,7 +44,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="P Text" type="Label" parent="Placeholder"]
+[node name="P Text" type="Label" parent="Placeholders/player status PLACEHOLDER"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 text = "Player Health and Mana
@@ -50,7 +58,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Placeholder4" type="ColorRect" parent="."]
+[node name="spells PLACEHOLDER" type="ColorRect" parent="Placeholders"]
 margin_left = 526.0
 margin_top = 581.0
 margin_right = 928.0
@@ -60,7 +68,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="P Text" type="Label" parent="Placeholder4"]
+[node name="P Text" type="Label" parent="Placeholders/spells PLACEHOLDER"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 text = "Spells"
@@ -71,7 +79,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Placeholder2" type="ColorRect" parent="."]
+[node name="minimap PLACEHOLDER" type="ColorRect" parent="Placeholders"]
 margin_left = 1071.0
 margin_top = 39.0
 margin_right = 1242.0
@@ -81,7 +89,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="P text" type="Label" parent="Placeholder2"]
+[node name="P text" type="Label" parent="Placeholders/minimap PLACEHOLDER"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 text = "WHERE AM I?
@@ -92,11 +100,3 @@ uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Party Interface" parent="." instance=ExtResource( 2 )]
-margin_left = 48.0
-margin_top = 32.0
-margin_right = 283.0
-margin_bottom = 379.0
-
-[editable path="Party Interface"]

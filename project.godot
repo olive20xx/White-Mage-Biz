@@ -10,18 +10,18 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Resource",
-"class": "AdventurerData",
+"class": "NpcData",
 "language": "GDScript",
-"path": "res://Scenes/AdventurerData.gd"
+"path": "res://Scenes/NpcData.gd"
 } ]
 _global_script_class_icons={
-"AdventurerData": ""
+"NpcData": ""
 }
 
 [application]
 
 config/name="White Mage Biz"
-run/main_scene="res://Scenes/UI.tscn"
+run/main_scene="res://Scenes/World.tscn"
 config/icon="res://icon.png"
 
 [display]

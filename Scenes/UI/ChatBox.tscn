@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Scenes/ChatBox.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/CommandManager.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/UI/ChatBox.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/UI/CommandManager.gd" type="Script" id=2]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -90,3 +90,9 @@ caret_blink = true
 
 [node name="CommandManager" type="Node" parent="."]
 script = ExtResource( 2 )
+
+[connection signal="focus_entered" from="MarginContainer/VBoxContainer/ColorRect/HBoxContainer/LineEdit" to="." method="_on_LineEdit_focus_entered"]
+[connection signal="focus_exited" from="MarginContainer/VBoxContainer/ColorRect/HBoxContainer/LineEdit" to="." method="_on_LineEdit_focus_exited"]
+[connection signal="text_entered" from="MarginContainer/VBoxContainer/ColorRect/HBoxContainer/LineEdit" to="." method="_on_LineEdit_text_entered"]
+[connection signal="command_msg_logged" from="CommandManager" to="." method="_on_CommandManager_command_msg_logged"]
+[connection signal="error_msg_logged" from="CommandManager" to="." method="_on_CommandManager_error_msg_logged"]
