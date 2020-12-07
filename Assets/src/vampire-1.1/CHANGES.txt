@@ -1,0 +1,10 @@
+1.1
+- Created vampirette sprite.
+- Created transformed (evil) version of vampirette.
+
+1.0
+- Reworked CharlesGabriel's vampire sprite for use in Stendhal.
+- Adjusted side-facing frames.
+- Created 24x32, 48x64 scaled w/out filter, & 48x64 scaled w/ scale2x filter versions.
+- Created female vampire sprite.
+- Created transformed (evil) versions of male & female vampires.

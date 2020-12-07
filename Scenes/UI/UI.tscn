@@ -11,6 +11,7 @@ __meta__ = {
 }
 
 [node name="Placeholder BG" type="ColorRect" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.0117647, 0, 0.0823529, 1 )
@@ -18,21 +19,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ChatBox" parent="." instance=ExtResource( 1 )]
-margin_left = 64.0
-margin_top = -248.0
-margin_right = 414.0
-margin_bottom = -48.0
-
-[node name="PartyInterface" parent="." instance=ExtResource( 2 )]
-margin_left = 48.0
-margin_top = 32.0
-margin_right = 283.0
-margin_bottom = 379.0
-
 [node name="Placeholders" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="player status PLACEHOLDER" type="ColorRect" parent="Placeholders"]
 margin_left = 1013.35
@@ -100,3 +92,15 @@ uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ChatBox" parent="." instance=ExtResource( 1 )]
+margin_left = 64.0
+margin_top = -248.0
+margin_right = 414.0
+margin_bottom = -48.0
+
+[node name="PartyInterface" parent="." instance=ExtResource( 2 )]
+margin_left = 48.0
+margin_top = 32.0
+margin_right = 283.0
+margin_bottom = 379.0

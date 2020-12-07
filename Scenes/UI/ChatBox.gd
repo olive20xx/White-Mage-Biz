@@ -8,16 +8,16 @@ onready var cmdManager = $CommandManager
 var has_focus = false
 
 var groups = [
+	{'name': 'General', 'color': '#e2a084'}, #peach
 	{'name': 'Party',   'color': '#11b7d7'}, #light blue
 	{'name': 'Whisper', 'color': '#9e11d7'}, #dark pink
-	{'name': 'General', 'color': '#e2a084'},  #peach
 ]
 
 var group_index = 0
 var user_name = 'Kroan'
 
 func _ready():
-	change_group(0)
+	change_group(5)
 
 
 func _input(event):
@@ -49,6 +49,7 @@ func add_message(text, color):
 
 func add_chat_message(username, text, group = 0):
 	var color = groups[group]['color']
+	#var group_id = groups[group]['name'] UNFINISHED
 	var final_text = '[' + username + ']: '
 	final_text += text
 	add_message(final_text, color)
@@ -67,6 +68,20 @@ func add_error_log(text):
 # Probably want to make a new Node to contain all the diff system messages
 func _on_party_member_added(npc):
 	add_system_log(npc.username + ' joined the party!')
+
+func _on_teleport_requested(npc):
+	var username = npc.username
+	var text
+	
+	var random_text = randi() % 6
+	match random_text:
+		0: text = 'Can I get a TP please'
+		1: text = 'need tp help'
+		2: text = 'tptptptptp'
+		3: text = 'i would like to teleport'
+		4: text = 'any whm got tp?'
+		5: text = 'hi cud i plaese hav tp'
+	add_chat_message(username, text)
 
 # Not sure how to make it so you can leave text in the inputfield, release focus
 # then grab focus again with Enter without sending the leftover text

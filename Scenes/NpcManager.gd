@@ -3,21 +3,27 @@ extends Node
 onready var NpcData = load("res://Scenes/NpcData.gd")
 onready var PartyManager = $PartyManager
 onready var NameGen = $NameGenerator
+onready var TpRequestTimer = $TpRequestTimer
+var rng = RandomNumberGenerator.new()
 
 signal cmd_invite_processed
 signal party_member_added
 signal cmd_kick_processed
 signal party_member_removed
+signal teleport_requested
 
 export(int) var max_NPCs = 20
 export(int) var max_customers = 5
 
 var local_NPCs = []
 var customers = []
-var stolen_customers = []
+var tp_request_index = 0
+export(float) var tp_request_min_time = 1.0
+export(float) var tp_request_max_time = 5.0
 
 
 func _ready():
+	rng.randomize()
 	setup_npcs()
 
 
@@ -42,6 +48,7 @@ func create_npc(username: String):
 	return new_npc
 
 
+# PARTY MANAGEMENT
 func add_to_party(npc: NpcData):
 	PartyManager.party_members.append(npc)
 	emit_signal('party_member_added', npc)
@@ -50,6 +57,7 @@ func add_to_party(npc: NpcData):
 func remove_from_party(npc: NpcData):
 	PartyManager.party_members.erase(npc)
 	emit_signal('party_member_removed', npc)
+
 
 func _on_cmd_invite_received(target):
 	
@@ -68,6 +76,7 @@ func _on_cmd_invite_received(target):
 	# If target not found in local_NPCs
 	emit_signal('cmd_invite_processed', target, -1)
 
+
 func _on_cmd_kick_received(target):
 	var in_party = false
 	
@@ -79,10 +88,25 @@ func _on_cmd_kick_received(target):
 	emit_signal('cmd_kick_processed', target, in_party)
 
 
-
+# TELEPORT REQUESTING
+# LATER: maybe create a timer per customer? randomly select ppl from local_NPCs
 func _on_TpRequestTimer_timeout():
-	request_teleport()
 
+	if customers.size() == 0:
+		return
+	
+	if tp_request_index > customers.size() - 1:
+		tp_request_index = 0
+	
+	var requester = customers[tp_request_index]
+	tp_request_index += 1
+	
+	request_teleport(requester)
+	
+	# set random time for next timer
+	var random_float = rng.randf_range(tp_request_min_time, tp_request_max_time)
+	TpRequestTimer.start(random_float)
 
-func request_teleport():
-	pass
+# LATER: NPCs will specify a destination
+func request_teleport(requester: NpcData):
+	emit_signal('teleport_requested', requester)
