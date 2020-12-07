@@ -20,4 +20,9 @@ script = ExtResource( 3 )
 [node name="NameGenerator" type="Node" parent="NpcManager"]
 script = ExtResource( 4 )
 
+[node name="TpRequestTimer" type="Timer" parent="NpcManager"]
+autostart = true
+
+[connection signal="timeout" from="NpcManager/TpRequestTimer" to="NpcManager" method="_on_TpRequestTimer_timeout"]
+
 [editable path="UI"]

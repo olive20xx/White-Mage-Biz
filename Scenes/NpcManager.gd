@@ -78,3 +78,11 @@ func _on_cmd_kick_received(target):
 	
 	emit_signal('cmd_kick_processed', target, in_party)
 
+
+
+func _on_TpRequestTimer_timeout():
+	request_teleport()
+
+
+func request_teleport():
+	pass
