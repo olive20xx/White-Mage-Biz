@@ -1,9 +1,9 @@
 extends Node2D
 
 onready var NpcManager = $NpcManager
-onready var ChatBox = $UI/ChatBox
-onready var CommandManager = $UI/ChatBox/CommandManager
-onready var PartyInterface = $UI/PartyInterface
+onready var ChatBox = $CanvasLayer/UI/ChatBox
+onready var CommandManager = $CanvasLayer/UI/ChatBox/CommandManager
+onready var PartyInterface = $CanvasLayer/UI/PartyInterface
 
 func _ready():
 	CommandManager.connect('cmd_invite', NpcManager, '_on_cmd_invite_received')
