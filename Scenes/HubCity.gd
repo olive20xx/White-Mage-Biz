@@ -16,3 +16,5 @@ func _ready():
 	NpcManager.connect('party_member_removed', PartyInterface, '_on_party_member_removed')
 	
 	NpcManager.connect('teleport_requested', ChatBox, '_on_teleport_requested')
+	
+	

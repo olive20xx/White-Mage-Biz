@@ -14,7 +14,7 @@ var groups = [
 ]
 
 var group_index = 0
-var user_name = 'Kroan'
+var player_username = Player.username
 
 func _ready():
 	change_group(5)
@@ -22,7 +22,7 @@ func _ready():
 
 func _input(event):
 	if event is InputEventKey:
-		if event.is_action_pressed('ui_accept'):
+		if event.is_action_pressed('ui_accept') or event.is_action_pressed('focus_chat_backslash'):
 			inputField.grab_focus()
 		if event.is_action_pressed('ui_cancel'):
 			inputField.release_focus()
@@ -90,7 +90,7 @@ func _on_LineEdit_text_entered(new_text):
 		if new_text[0] == '/':
 			cmdManager.on_command_entered(new_text)
 		else:
-			add_chat_message(user_name, new_text, group_index)
+			add_chat_message(player_username, new_text, group_index)
 		inputField.text = ''
 
 

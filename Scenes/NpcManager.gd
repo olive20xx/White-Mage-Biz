@@ -1,9 +1,9 @@
 extends Node
 
 onready var NpcData = load("res://Scenes/NpcData.gd")
-onready var PartyManager = $PartyManager
 onready var NameGen = $NameGenerator
 onready var TpRequestTimer = $TpRequestTimer
+onready var ShoutTimer = $ShoutTimer
 var rng = RandomNumberGenerator.new()
 
 signal cmd_invite_processed
@@ -20,6 +20,9 @@ var customers = []
 var tp_request_index = 0
 export(float) var tp_request_min_time = 1.0
 export(float) var tp_request_max_time = 5.0
+var shout_index = 0
+export(float) var shout_min_time = 0.5
+export(float) var shout_max_time = 3.0
 
 
 func _ready():
@@ -48,14 +51,17 @@ func create_npc(username: String):
 	return new_npc
 
 
-# PARTY MANAGEMENT
+####################
+# PARTY MANAGEMENT #
+####################
+
 func add_to_party(npc: NpcData):
-	PartyManager.party_members.append(npc)
+	Player.party_members.append(npc)
 	emit_signal('party_member_added', npc)
 
 
 func remove_from_party(npc: NpcData):
-	PartyManager.party_members.erase(npc)
+	Player.party_members.erase(npc)
 	emit_signal('party_member_removed', npc)
 
 
@@ -80,7 +86,7 @@ func _on_cmd_invite_received(target):
 func _on_cmd_kick_received(target):
 	var in_party = false
 	
-	for npc in PartyManager.party_members:
+	for npc in Player.party_members:
 		if npc.username == target:
 			remove_from_party(npc)
 			in_party = true
@@ -88,7 +94,10 @@ func _on_cmd_kick_received(target):
 	emit_signal('cmd_kick_processed', target, in_party)
 
 
-# TELEPORT REQUESTING
+#######################
+# TELEPORT REQUESTING #
+#######################
+
 # LATER: maybe create a timer per customer? randomly select ppl from local_NPCs
 func _on_TpRequestTimer_timeout():
 
