@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="White Mage Biz"
-run/main_scene="res://Scenes/HubCity.tscn"
+run/main_scene="res://Scenes/Zones/HubCity.tscn"
 config/icon="res://icon.png"
 
 [autoload]

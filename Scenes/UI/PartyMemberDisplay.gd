@@ -2,18 +2,17 @@ extends HBoxContainer
 
 onready var portrait = $CenterContainer/Portrait
 onready var username = $MarginContainer/VBoxContainer/Name
-export(Array, Resource) var portraits
+
+var my_npc: NpcData = null
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	#randomize()
-	#var randomIndex = randi() % (portraits.size())
-	#portrait.texture = portraits[randomIndex]
-	var regionPos = Vector2(randi() % 8, randi() % 8) * 48
-	portrait.texture.region.position = regionPos
+	pass
 
-func update_display(npc: NpcData):
+
+func assign_npc(npc:NpcData):
+	my_npc = npc
+	
 	# Create a unique AtlasTexture
 	var new_atlas_texture = portrait.texture.duplicate()
 	portrait.texture = new_atlas_texture
@@ -22,4 +21,16 @@ func update_display(npc: NpcData):
 	var randomRegion = Vector2(randi() % 8, randi() % 8) * 48
 	portrait.texture.region.position = randomRegion
 	
-	username.text = npc.username
+	username.text = my_npc.username
+
+
+func remove_npc():
+	my_npc = null
+	username.text = ''
+
+
+func update_display():
+	if my_npc:
+		show()
+	else:
+		hide()

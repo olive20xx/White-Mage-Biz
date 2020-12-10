@@ -14,6 +14,8 @@ signal teleport_requested
 
 export(int) var max_NPCs = 20
 export(int) var max_customers = 5
+export(int) var min_name_length = 2
+export(int) var max_name_length = 15
 
 var local_NPCs = []
 var customers = []
@@ -32,14 +34,14 @@ func _ready():
 
 func setup_npcs():
 	for _i in range(max_NPCs):
-		var new_npc = create_npc(NameGen.generate())
+		var new_npc = create_npc(NameGen.generate(min_name_length, max_name_length))
 		local_NPCs.append(new_npc)
-		print(new_npc.username + ' added to local NPCs.')
+#		print(new_npc.username + ' added to local NPCs.')
 		
 		if customers.size() < max_customers:
 			new_npc.status = NpcData.customer_status.CUSTOMER
 			customers.append(new_npc)
-			print(new_npc.username + " is a customer!")
+#			print(new_npc.username + " is a customer!")
 	
 	print(str(local_NPCs.size()) + ' NPCs created in this zone.')
 

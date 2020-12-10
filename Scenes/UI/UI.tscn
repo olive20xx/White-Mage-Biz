@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/UI/ChatBox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/UI/PartyInterface.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/UI/PlayerStatus.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/UI/SpellInterface.gd" type="Script" id=4]
 
 [node name="UI" type="Control"]
 margin_right = 1280.0
@@ -30,27 +31,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="spells PLACEHOLDER" type="ColorRect" parent="Placeholders"]
-margin_left = 526.0
-margin_top = 581.0
-margin_right = 928.0
-margin_bottom = 669.0
-color = Color( 0.0784314, 0.0823529, 0.207843, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="P Text" type="Label" parent="Placeholders/spells PLACEHOLDER"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-text = "Spells"
-align = 1
-valign = 1
-uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="minimap PLACEHOLDER" type="ColorRect" parent="Placeholders"]
 margin_left = 1071.0
 margin_top = 39.0
@@ -72,6 +52,66 @@ uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="SpellInterface" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -80.0
+margin_top = -112.0
+margin_right = 192.0
+margin_bottom = -48.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="SpellInterface"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0.0156863, 0.411765, 1 )
+
+[node name="MarginContainer" type="MarginContainer" parent="SpellInterface"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SpellInterface/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 262.0
+margin_bottom = 54.0
+
+[node name="SpellButton1" type="Button" parent="SpellInterface/MarginContainer/HBoxContainer"]
+margin_right = 60.0
+margin_bottom = 44.0
+rect_min_size = Vector2( 60, 0 )
+text = "PC"
+
+[node name="SpellButton2" type="Button" parent="SpellInterface/MarginContainer/HBoxContainer"]
+margin_left = 64.0
+margin_right = 124.0
+margin_bottom = 44.0
+rect_min_size = Vector2( 60, 0 )
+text = "City2"
+
+[node name="SpellButton3" type="Button" parent="SpellInterface/MarginContainer/HBoxContainer"]
+margin_left = 128.0
+margin_right = 188.0
+margin_bottom = 44.0
+rect_min_size = Vector2( 60, 0 )
+text = "City3"
+
+[node name="SpellButton4" type="Button" parent="SpellInterface/MarginContainer/HBoxContainer"]
+margin_left = 192.0
+margin_right = 252.0
+margin_bottom = 44.0
+rect_min_size = Vector2( 60, 0 )
+text = "Recall"
 
 [node name="ChatBox" parent="." instance=ExtResource( 1 )]
 margin_left = 64.0
@@ -154,3 +194,6 @@ margin_top = 75.0
 margin_right = 92.0
 margin_bottom = 89.0
 text = "Hub City"
+
+[connection signal="pressed" from="SpellInterface/MarginContainer/HBoxContainer/SpellButton1" to="SpellInterface" method="_on_SpellButton1_pressed"]
+[connection signal="pressed" from="SpellInterface/MarginContainer/HBoxContainer/SpellButton4" to="SpellInterface" method="_on_SpellButton4_pressed"]
