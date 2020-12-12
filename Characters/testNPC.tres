@@ -5,5 +5,3 @@
 [resource]
 script = ExtResource( 1 )
 username = "Placeholder Lad"
-status = 0
-type = 0

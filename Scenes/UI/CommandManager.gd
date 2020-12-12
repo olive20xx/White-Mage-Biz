@@ -17,8 +17,9 @@ func on_command_entered(text : String):
 		print('on_command_entered error')
 
 
-## /INVITE
-
+###########
+# /INVITE #
+###########
 
 func cmd_invite(text):
 	# Error Checks
@@ -44,25 +45,26 @@ func cmd_invite(text):
 		emit_signal('cmd_invite', target)
 
 
-func _on_cmd_invite_processed(target: String, status):
+func _on_cmd_invite_processed(target: String, status = -69):
 	var msg
 	match status:
-		-1: # Target not found
+		-69: # Target not found
 			msg = 'Player "' + target + '" not found in this zone.'
-		0: # NO_TP
+		NpcManager.customer_status.NO_TP:
 			msg = target + ' declined.'
-		1: # CUSTOMER
+		NpcManager.customer_status.CUSTOMER:
 			msg = 'You invited ' + target + ' to join the party.'
-		2: # STOLEN
+		NpcManager.customer_status.STOLEN:
 			msg = target + ' is already in another party.'
-		3: # IN_PARTY
+		NpcManager.customer_status.IN_PARTY:
 			msg = target + ' is already in the party.'
 	
 	emit_signal('command_msg_logged', msg)
 
 
-## /KICK
-
+#########
+# /KICK #
+#########
 
 func cmd_kick(text):
 	# Error Checks
