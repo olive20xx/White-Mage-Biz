@@ -5,14 +5,12 @@ onready var SpellButton2 = $MarginContainer/HBoxContainer/SpellButton2
 onready var SpellButton3 = $MarginContainer/HBoxContainer/SpellButton3
 onready var SpellButton4 = $MarginContainer/HBoxContainer/SpellButton4
 
-signal initiate_tp_paragon_city
+signal cast_teleport
 
 # TO PARAGON CITY
 func _on_SpellButton1_pressed():
-	emit_signal('initiate_tp_paragon_city')
-	get_tree().change_scene('res://Scenes/Zones/ParagonCity.tscn')
-	for member in Player.party_members:
-		print(member.username + ' teleported with you!')
+	emit_signal('cast_teleport', NpcManager.destinations.CITY_1)
+	#get_tree().change_scene('res://Scenes/Zones/ParagonCity.tscn')
 
 # TO CITY 2
 

@@ -4,6 +4,7 @@ extends Node
 onready var NameGen = $NameGenerator
 onready var TpRequestTimer = $TpRequestTimer
 onready var ShoutTimer = $ShoutTimer
+onready var market = get_parent()
 var rng = RandomNumberGenerator.new()
 
 signal cmd_invite_processed
@@ -73,6 +74,7 @@ func create_npc(username: String):
 
 func turn_npc_into_customer(npc):
 	npc.status = customer_status.CUSTOMER
+	npc.willing_to_pay = market.base_payment
 	customers.append(npc)
 
 
