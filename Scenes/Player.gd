@@ -1,6 +1,7 @@
 extends Node
 
-onready var SpellInterface = get_node('../HubCity/CanvasLayer/UI/SpellInterface')
+var spell_interface: Node = null
+# get_node('../HubCity/CanvasLayer/UI/SpellInterface')
 
 var username = 'Kroan'
 
@@ -14,15 +15,22 @@ onready var current_mana: int = max_mana
 var party_members = []
 
 func _ready():
-	# if this is here, you need to reconnect the signal every time you TP
-	SpellInterface.connect('cast_teleport', self, '_on_teleport_cast')
+#	connect_signals()
+	Events.connect('cast_recall', self, 'recall')
+	Events.connect('cast_teleport', self, '_on_teleport_cast')
 
+#func connect_signals():
+#	var root = get_tree().get_root()
+#	var current_scene = root.get_child(root.get_child_count() - 1)
+#	spell_interface = current_scene.get_node_or_null('CanvasLayer/UI/SpellInterface')
+#
+#	if spell_interface:
+#		spell_interface.connect('cast_teleport', self, '_on_teleport_cast')
+#		spell_interface.connect('cast_recall', self, 'recall')
+#	print(spell_interface, spell_interface.name)
 
 func teleport():
 	get_tree().change_scene('res://Scenes/Zones/ParagonCity.tscn')
-	print('tp!!!!!!')
-	for member in Player.party_members:
-		print(member.username + ' teleported with you!')
 
 func recall():
 	get_tree().change_scene('res://Scenes/Zones/HubCity.tscn')

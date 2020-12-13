@@ -1,7 +1,14 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scenes/UI/UI.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/sprites placeholder.png" type="Texture" id=2]
 
 [node name="ParagonCity" type="Node2D"]
+
+[node name="sprites placeholder" type="Sprite" parent="."]
+position = Vector2( 688, 392 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 160, 480, 300 )
 
 [node name="UI" parent="." instance=ExtResource( 1 )]

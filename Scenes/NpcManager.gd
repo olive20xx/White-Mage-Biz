@@ -31,8 +31,6 @@ var shout_index = 0
 export(float) var shout_min_time = 0.5
 export(float) var shout_max_time = 3.0
 
-onready var testt = $TestTimer
-
 func _ready():
 	rng.randomize()
 	setup_npcs()
@@ -62,7 +60,7 @@ func setup_npcs():
 			assign_random_destination(new_npc)
 #			print(new_npc.username + " is a customer!")
 	
-	print(str(local_NPCs.size()) + ' NPCs created in this zone.')
+#	print(str(local_NPCs.size()) + ' NPCs created in this zone.')
 
 
 func create_npc(username: String):
@@ -84,8 +82,8 @@ func assign_random_destination(npc):
 	random_dest = rng.randi_range(1, destinations.size() - 1)
 	
 	npc.destination = random_dest
-	print(random_dest)
-	print(destinations.keys()[npc.destination])
+#	print(random_dest)
+#	print(destinations.keys()[npc.destination])
 
 
 ####################

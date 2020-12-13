@@ -34,6 +34,7 @@ config/icon="res://icon.png"
 
 Player="*res://Scenes/Player.gd"
 ImportData="*res://Scenes/ImportData.gd"
+Events="*res://Scenes/Events.gd"
 
 [display]
 
