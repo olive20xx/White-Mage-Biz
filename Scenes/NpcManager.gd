@@ -1,9 +1,9 @@
 class_name NpcManager
 extends Node
 
-onready var NameGen = $NameGenerator
-onready var TpRequestTimer = $TpRequestTimer
-onready var ShoutTimer = $ShoutTimer
+onready var nameGen = $NameGenerator
+onready var tpRequestTimer = $TpRequestTimer
+onready var shoutTimer = $ShoutTimer
 onready var market = get_parent()
 var rng = RandomNumberGenerator.new()
 
@@ -51,7 +51,7 @@ func _ready():
 
 func setup_npcs():
 	for _i in range(max_NPCs):
-		var new_npc = create_npc(NameGen.generate(min_name_length, max_name_length))
+		var new_npc = create_npc(nameGen.generate(min_name_length, max_name_length))
 		local_NPCs.append(new_npc)
 #		print(new_npc.username + ' added to local NPCs.')
 		
@@ -156,7 +156,7 @@ func _on_TpRequestTimer_timeout():
 	
 	# set random time for next timer
 	var random_float = rng.randf_range(tp_request_min_time, tp_request_max_time)
-	TpRequestTimer.start(random_float)
+	tpRequestTimer.start(random_float)
 
 # LATER: NPCs will specify a destination
 func request_teleport(requester: NpcData):
@@ -178,4 +178,4 @@ func _on_ShoutTimer_timeout():
 		
 	# set random time for next timer
 	var random_float = rng.randf_range(shout_min_time, shout_max_time)
-	ShoutTimer.start(random_float)
+	shoutTimer.start(random_float)

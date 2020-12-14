@@ -196,4 +196,6 @@ margin_bottom = 89.0
 text = "Hub City"
 
 [connection signal="pressed" from="SpellInterface/MarginContainer/HBoxContainer/SpellButton1" to="SpellInterface" method="_on_SpellButton1_pressed"]
+[connection signal="pressed" from="SpellInterface/MarginContainer/HBoxContainer/SpellButton2" to="SpellInterface" method="_on_SpellButton2_pressed"]
+[connection signal="pressed" from="SpellInterface/MarginContainer/HBoxContainer/SpellButton3" to="SpellInterface" method="_on_SpellButton3_pressed"]
 [connection signal="pressed" from="SpellInterface/MarginContainer/HBoxContainer/SpellButton4" to="SpellInterface" method="_on_SpellButton4_pressed"]
