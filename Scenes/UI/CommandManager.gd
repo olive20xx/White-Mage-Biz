@@ -1,9 +1,14 @@
 extends Node
 
+# I think it's OK to leave these signals here because they're only used to
+# communicate between the CommandManager and its parent, the ChatBox
 signal command_msg_logged(text)
 signal error_msg_logged(text)
-signal cmd_invite(target)
-signal cmd_kick(target)
+
+
+func _ready():
+	Events.connect('cmd_invite_processed', self, '_on_cmd_invite_processed')
+	Events.connect('cmd_kick_processed', self, '_on_cmd_kick_processed')
 
 
 func on_command_entered(text : String):
@@ -42,7 +47,7 @@ func cmd_invite(text):
 		var msg = '/invite command must include a valid player to invite.'
 		emit_signal('error_msg_logged', msg)
 	else:
-		emit_signal('cmd_invite', target)
+		Events.emit_signal('cmd_invite', target)
 
 
 func _on_cmd_invite_processed(target: String, status = -69):
@@ -83,7 +88,7 @@ func cmd_kick(text):
 		var msg = '/kick command must include a valid player to kick.'
 		emit_signal('error_msg_logged', msg)
 	else:
-		emit_signal('cmd_kick', target)
+		Events.emit_signal('cmd_kick', target)
 
 
 func _on_cmd_kick_processed(target: String, in_party: bool):

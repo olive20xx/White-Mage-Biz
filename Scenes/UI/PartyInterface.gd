@@ -8,6 +8,10 @@ onready var display4 = $MarginContainer/VBoxContainer/PartyMemberDisplay4
 onready var displays = [display1, display2, display3, display4]
 
 func _ready():
+	Events.connect('party_member_added', self, '_on_party_member_added')
+	Events.connect('party_member_kicked', self, '_on_party_member_removed')
+	
+	
 	var _index = 0
 	for npc in Player.party_members:
 		var d = displays[_index]

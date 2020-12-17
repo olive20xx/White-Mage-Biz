@@ -32,9 +32,9 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Player="*res://Scenes/Player.gd"
-ImportData="*res://Scenes/ImportData.gd"
-Events="*res://Scenes/Events.gd"
+Events="*res://Singletons/Events.gd"
+ImportData="*res://Singletons/ImportData.gd"
+Player="*res://Singletons/Player.gd"
 
 [display]
 

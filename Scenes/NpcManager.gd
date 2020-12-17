@@ -7,14 +7,8 @@ onready var shoutTimer = $ShoutTimer
 onready var market = get_parent()
 var rng = RandomNumberGenerator.new()
 
-signal cmd_invite_processed
-signal party_member_added
-signal cmd_kick_processed
-signal party_member_kicked
-signal teleport_requested
-
 enum customer_status {NO_TP, CUSTOMER, STOLEN, IN_PARTY}
-enum destinations {NO_DEST, CITY_1, CITY_2, CITY_3} # This might become a dictionary
+#enum destinations {NO_DEST, CITY_1, CITY_2, CITY_3} # This might become a dictionary
 
 export(int) var max_NPCs = 20
 export(int) var max_customers = 5
@@ -32,6 +26,9 @@ export(float) var shout_min_time = 0.5
 export(float) var shout_max_time = 3.0
 
 func _ready():
+	Events.connect('cmd_invite', self, '_on_cmd_invite_received')
+	
+	
 	rng.randomize()
 	setup_npcs()
 
@@ -77,33 +74,12 @@ func turn_npc_into_customer(npc):
 
 
 func assign_random_destination(npc):
-	var random_dest
+	var keys = Player.destinations.keys() # Returns an array of the Dict's keys: [City1, City2, etc]
+	var random_index = randi() % keys.size()
+	var random_dest_key = keys[random_index]
 	
-	random_dest = rng.randi_range(1, destinations.size() - 1)
-	
-	npc.destination = random_dest
-#	print(random_dest)
-#	print(destinations.keys()[npc.destination])
-
-
-####################
-# PARTY MANAGEMENT #
-####################
-
-func add_to_party(npc: NpcData):
-	Player.party_members.append(npc)
-	npc.status = customer_status.IN_PARTY
-	emit_signal('party_member_added', npc)
-	print(npc.username + ': Hello, my destination is ' + destinations.keys()[npc.destination])
-
-
-# SO FAR THIS IS ONLY USED FOR KICKING. YOU WILL NEED TO REJIGGER
-# FOR WHEN CUSTOMERS LEAVE THE PARTY AFTER SUCCESSFUL TELEPORT TO DESTINATION
-# Or for when customers leave due to impatience
-func kick_from_party(npc: NpcData):
-	Player.party_members.erase(npc)
-	turn_npc_into_customer(npc)
-	emit_signal('party_member_kicked', npc)
+	# Assign the destination's dictionary to the NPC
+	npc.destination = Player.destinations[random_dest_key]
 
 
 func _on_cmd_invite_received(target):
@@ -112,27 +88,16 @@ func _on_cmd_invite_received(target):
 		if npc.username == target:
 			if npc.status == customer_status.CUSTOMER:
 				# Signal must come before add_to_party to send correct message
-				emit_signal('cmd_invite_processed', npc.username, npc.status)
+				Events.emit_signal('cmd_invite_processed', npc.username, npc.status)
 				customers.erase(npc)
-				add_to_party(npc) # AFTER A TIMER?
+				Player.add_to_party(npc) # AFTER A TIMER?
 				return
 			else: 
-				emit_signal('cmd_invite_processed', npc.username, npc.status)
+				Events.emit_signal('cmd_invite_processed', npc.username, npc.status)
 				return
 	
 	# If target not found in local_NPCs
-	emit_signal('cmd_invite_processed', target)
-
-
-func _on_cmd_kick_received(target):
-	var in_party = false
-	
-	for npc in Player.party_members:
-		if npc.username == target:
-			kick_from_party(npc)
-			in_party = true
-	
-	emit_signal('cmd_kick_processed', target, in_party)
+	Events.emit_signal('cmd_invite_processed', target)
 
 
 #######################
@@ -143,24 +108,24 @@ func _on_cmd_kick_received(target):
 func _on_TpRequestTimer_timeout():
 
 	if customers.size() == 0:
-		print('tp request timeout function returned')
 		return
 	
 	if tp_request_index > customers.size() - 1:
 		tp_request_index = 0
 	
 	var requester = customers[tp_request_index]
+	var dest_key = requester.destination
 	tp_request_index += 1
 	
-	request_teleport(requester)
+	request_teleport(requester, dest_key)
 	
 	# set random time for next timer
 	var random_float = rng.randf_range(tp_request_min_time, tp_request_max_time)
 	tpRequestTimer.start(random_float)
 
 # LATER: NPCs will specify a destination
-func request_teleport(requester: NpcData):
-	emit_signal('teleport_requested', requester)
+func request_teleport(requester: NpcData, destination):
+	Events.emit_signal('teleport_requested', requester, destination)
 
 
 #################
