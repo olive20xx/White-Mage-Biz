@@ -27,14 +27,18 @@ _global_script_class_icons={
 [application]
 
 config/name="White Mage Biz"
-run/main_scene="res://Scenes/Zones/HubCity.tscn"
+run/main_scene="res://Scenes/Main.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 Events="*res://Singletons/Events.gd"
 ImportData="*res://Singletons/ImportData.gd"
-Player="*res://Singletons/Player.gd"
+
+[debug]
+
+gdscript/warnings/unused_signal=false
+gdscript/warnings/return_value_discarded=false
 
 [display]
 

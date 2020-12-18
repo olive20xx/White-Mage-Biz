@@ -21,6 +21,7 @@ onready var current_mana: int = max_mana
 var party_members = []
 
 func _ready():
+# warning-ignore:return_value_discarded
 	Events.connect('cast_recall', self, 'recall')
 	Events.connect('cast_teleport', self, 'teleport')
 	Events.connect('cmd_kick', self, '_on_cmd_kick_received')
