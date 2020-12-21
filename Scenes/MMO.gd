@@ -2,7 +2,7 @@ class_name MMO
 extends Node2D
 
 onready var player = $Player
-onready var chatBox = $CanvasLayer1/UI/ChatBox
+onready var chatBox = $CanvasLayer1/GUI/ChatBox
 onready var transitionEffect = $CanvasLayer2/SceneTransitionRect
 
 var current_zone: Node2D

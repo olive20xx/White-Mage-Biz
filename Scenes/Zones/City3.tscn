@@ -1,8 +1,10 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Scenes/UI/UI.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/GUI/GUI.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/sprites placeholder.png" type="Texture" id=2]
 [ext_resource path="res://Assets/city3 ph.png" type="Texture" id=3]
+
+
 
 [node name="City3" type="Node2D"]
 
