@@ -7,17 +7,17 @@ extends Control
 
 # TO CITY 1
 func _on_SpellButton1_pressed():
-	Events.emit_signal('cast_teleport', Player.destinations.City1)
+	Events.emit_signal('cast_teleport', Static.destinations.City1)
 
 
 # TO CITY 2
 func _on_SpellButton2_pressed():
-	Events.emit_signal('cast_teleport', Player.destinations.City2)
+	Events.emit_signal('cast_teleport', Static.destinations.City2)
 
 
 # TO CITY 3
 func _on_SpellButton3_pressed():
-	Events.emit_signal('cast_teleport', Player.destinations.City3)
+	Events.emit_signal('cast_teleport', Static.destinations.City3)
 
 
 # RECALL

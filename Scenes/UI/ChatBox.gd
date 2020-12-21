@@ -15,7 +15,7 @@ var groups = [
 ]
 
 var group_index = 0
-var player_username = Player.username
+var player_username
 
 func _ready():
 	Events.connect('teleport_requested', self, '_on_teleport_requested')

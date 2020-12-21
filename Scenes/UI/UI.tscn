@@ -90,7 +90,7 @@ margin_bottom = 54.0
 margin_right = 60.0
 margin_bottom = 44.0
 rect_min_size = Vector2( 60, 0 )
-text = "PC"
+text = "City1"
 
 [node name="SpellButton2" type="Button" parent="SpellInterface/MarginContainer/HBoxContainer"]
 margin_left = 64.0

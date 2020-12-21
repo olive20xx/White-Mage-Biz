@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node2D",
+"class": "MMO",
+"language": "GDScript",
+"path": "res://Scenes/MMO.gd"
+}, {
 "base": "Resource",
 "class": "NpcData",
 "language": "GDScript",
@@ -20,6 +25,7 @@ _global_script_classes=[ {
 "path": "res://Scenes/NpcManager.gd"
 } ]
 _global_script_class_icons={
+"MMO": "",
 "NpcData": "",
 "NpcManager": ""
 }
@@ -33,6 +39,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Events="*res://Singletons/Events.gd"
+Static="*res://Singletons/Static.gd"
 ImportData="*res://Singletons/ImportData.gd"
 
 [debug]

@@ -28,18 +28,8 @@ export(float) var shout_max_time = 3.0
 func _ready():
 	Events.connect('cmd_invite', self, '_on_cmd_invite_received')
 	
-	
 	rng.randomize()
 	setup_npcs()
-
-#func _input(event):
-#	if event is InputEventKey:
-#		if event.is_action_pressed('ui_select'):
-#			testt.start(10)
-#			print(testt.time_left)
-#	if event is InputEventKey:
-#		if event.scancode == KEY_UP:
-#			print(testt.time_left)
 
 
 #############
@@ -74,12 +64,12 @@ func turn_npc_into_customer(npc):
 
 
 func assign_random_destination(npc):
-	var keys = Player.destinations.keys() # Returns an array of the Dict's keys: [City1, City2, etc]
+	var keys = Static.destinations.keys() # Returns an array of the Dict's keys: [City1, City2, etc]
 	var random_index = randi() % keys.size()
 	var random_dest_key = keys[random_index]
 	
 	# Assign the destination's dictionary to the NPC
-	npc.destination = Player.destinations[random_dest_key]
+	npc.destination = Static.destinations[random_dest_key]
 
 
 func _on_cmd_invite_received(target):
@@ -90,7 +80,7 @@ func _on_cmd_invite_received(target):
 				# Signal must come before add_to_party to send correct message
 				Events.emit_signal('cmd_invite_processed', npc.username, npc.status)
 				customers.erase(npc)
-				Player.add_to_party(npc) # AFTER A TIMER?
+				Events.emit_signal('invite_accepted', npc)
 				return
 			else: 
 				Events.emit_signal('cmd_invite_processed', npc.username, npc.status)
@@ -123,7 +113,7 @@ func _on_TpRequestTimer_timeout():
 	var random_float = rng.randf_range(tp_request_min_time, tp_request_max_time)
 	tpRequestTimer.start(random_float)
 
-# LATER: NPCs will specify a destination
+
 func request_teleport(requester: NpcData, destination):
 	Events.emit_signal('teleport_requested', requester, destination)
 

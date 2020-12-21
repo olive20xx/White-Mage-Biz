@@ -1,14 +1,21 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scenes/UI/UI.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/sprites placeholder.png" type="Texture" id=2]
+[ext_resource path="res://Assets/city3 ph.png" type="Texture" id=3]
 
 [node name="City3" type="Node2D"]
 
 [node name="sprites placeholder" type="Sprite" parent="."]
-position = Vector2( 688, 392 )
+position = Vector2( 696, 456 )
+scale = Vector2( 0.82, 0.82 )
 texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 0, 160, 480, 300 )
 
 [node name="UI" parent="." instance=ExtResource( 1 )]
+
+[node name="city3 ph" type="Sprite" parent="."]
+position = Vector2( 696, 160 )
+scale = Vector2( 0.720551, 0.720551 )
+texture = ExtResource( 3 )
