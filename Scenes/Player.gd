@@ -18,25 +18,6 @@ func _ready():
 	Events.connect('cmd_kick', self, '_on_cmd_kick_received')
 
 
-#################
-# TELEPORTATION #
-#################
-
-# Destination arg should be one of the internal dictionaries of destinations
-# Ex: destination = Player.destinations.City1
-#func teleport(destination):
-#	get_tree().change_scene(destination['path'])
-#
-#
-#func recall():
-#	get_tree().change_scene(hubcity_path)
-
-
-#func _on_teleport_cast(destination):
-#	if destination == NpcManager.destinations.CITY_1:
-#		teleport()
-
-
 ####################
 # PARTY MANAGEMENT #
 ####################
@@ -67,13 +48,13 @@ func leave_party_impatient(npc):
 
 func add_to_party(npc: NpcData):
 	party_members.append(npc)
-	npc.status = NpcManager.customer_status.IN_PARTY
+	npc.status = Static.customer_status.IN_PARTY
 	Events.emit_signal('party_member_added', npc)
 
 
 func kick_from_party(npc: NpcData):
 	party_members.erase(npc)
-	var market = get_node_or_null('../HubCity/NpcManager')
+	var market = get_node_or_null('../NpcManager')
 	if market:
 		market.turn_npc_into_customer(npc) # This should probably go ON THE MARKET/HUB node
 		# Market/Hub node should received the "party_member_kicked" signal and turn NPC into customer!

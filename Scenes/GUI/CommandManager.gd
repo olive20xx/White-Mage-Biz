@@ -55,13 +55,13 @@ func _on_cmd_invite_processed(target: String, status = -69):
 	match status:
 		-69: # Target not found
 			msg = 'Player "' + target + '" not found in this zone.'
-		NpcManager.customer_status.NO_TP:
+		Static.customer_status.NO_TP:
 			msg = target + ' declined.'
-		NpcManager.customer_status.CUSTOMER:
+		Static.customer_status.CUSTOMER:
 			msg = 'You invited ' + target + ' to join the party.'
-		NpcManager.customer_status.STOLEN:
+		Static.customer_status.STOLEN:
 			msg = target + ' is already in another party.'
-		NpcManager.customer_status.IN_PARTY:
+		Static.customer_status.IN_PARTY:
 			msg = target + ' is already in the party.'
 	
 	emit_signal('command_msg_logged', msg)

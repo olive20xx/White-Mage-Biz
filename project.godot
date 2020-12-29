@@ -18,16 +18,10 @@ _global_script_classes=[ {
 "class": "NpcData",
 "language": "GDScript",
 "path": "res://Scenes/NpcData.gd"
-}, {
-"base": "Node",
-"class": "NpcManager",
-"language": "GDScript",
-"path": "res://Scenes/NpcManager.gd"
 } ]
 _global_script_class_icons={
 "MMO": "",
-"NpcData": "",
-"NpcManager": ""
+"NpcData": ""
 }
 
 [application]

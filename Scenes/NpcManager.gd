@@ -1,20 +1,16 @@
-class_name NpcManager
 extends Node
 
 onready var nameGen = $NameGenerator
 onready var tpRequestTimer = $TpRequestTimer
 onready var shoutTimer = $ShoutTimer
-onready var market = get_parent()
 var rng = RandomNumberGenerator.new()
-
-enum customer_status {NO_TP, CUSTOMER, STOLEN, IN_PARTY}
-#enum destinations {NO_DEST, CITY_1, CITY_2, CITY_3} # This might become a dictionary
 
 export(int) var max_NPCs = 20
 export(int) var max_customers = 5
 export(int) var min_name_length = 2
 export(int) var max_name_length = 15
 
+var current_zone: Node2D
 var local_NPCs = []
 var customers = []
 var tp_request_index = 0
@@ -29,13 +25,14 @@ func _ready():
 	Events.connect('cmd_invite', self, '_on_cmd_invite_received')
 	
 	rng.randomize()
-	setup_npcs()
 
 
 #############
 # NPC SETUP #
 #############
 
+# This should probably take the args for maxNPCs and maxCustomers
+### Parent will grab values from the zone or change things based on story state 
 func setup_npcs():
 	for _i in range(max_NPCs):
 		var new_npc = create_npc(nameGen.generate(min_name_length, max_name_length))
@@ -58,8 +55,10 @@ func create_npc(username: String):
 
 
 func turn_npc_into_customer(npc):
-	npc.status = customer_status.CUSTOMER
-	npc.willing_to_pay = market.base_payment
+	npc.status = Static.customer_status.CUSTOMER
+	print('NpcManager\'s currentzone: ' + str(current_zone))
+	if current_zone.has_method('base_payment_get'):
+		npc.willing_to_pay = current_zone.base_payment
 	customers.append(npc)
 
 
@@ -76,7 +75,7 @@ func _on_cmd_invite_received(target):
 	
 	for npc in local_NPCs:
 		if npc.username == target:
-			if npc.status == customer_status.CUSTOMER:
+			if npc.status == Static.customer_status.CUSTOMER:
 				# Signal must come before add_to_party to send correct message
 				Events.emit_signal('cmd_invite_processed', npc.username, npc.status)
 				customers.erase(npc)
