@@ -54,10 +54,6 @@ func add_to_party(npc: NpcData):
 
 func kick_from_party(npc: NpcData):
 	party_members.erase(npc)
-	var market = get_node_or_null('../NpcManager')
-	if market:
-		market.turn_npc_into_customer(npc) # This should probably go ON THE MARKET/HUB node
-		# Market/Hub node should received the "party_member_kicked" signal and turn NPC into customer!
 	Events.emit_signal('party_member_kicked', npc)
 
 

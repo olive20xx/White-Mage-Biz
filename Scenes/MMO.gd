@@ -21,7 +21,8 @@ func _ready():
 
 func setup_npc_manager():
 	npcManager.current_zone = current_zone
-	npcManager.setup_npcs()
+	npcManager.setup_npcs(current_zone.max_NPCs, current_zone.max_customers, 
+			current_zone.min_name_length, current_zone.max_name_length)
 
 
 func change_zones(dest_dict):

@@ -24,7 +24,6 @@ layer = 2
 
 [node name="NpcManager" type="Node" parent="."]
 script = ExtResource( 6 )
-max_name_length = 8
 
 [node name="NameGenerator" type="Node" parent="NpcManager"]
 script = ExtResource( 5 )
