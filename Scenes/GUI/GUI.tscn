@@ -193,7 +193,7 @@ text = "Wallet: "
 margin_top = 75.0
 margin_right = 92.0
 margin_bottom = 89.0
-text = "Hub City"
+text = "Zone Name"
 
 [connection signal="pressed" from="SpellInterface/MarginContainer/HBoxContainer/SpellButton1" to="SpellInterface" method="_on_SpellButton1_pressed"]
 [connection signal="pressed" from="SpellInterface/MarginContainer/HBoxContainer/SpellButton2" to="SpellInterface" method="_on_SpellButton2_pressed"]
